@@ -1,0 +1,16 @@
+import csv
+import json
+
+def convert_csv_to_json(csv_path, json_path):
+    with open(csv_path, mode='r', encoding='utf-8') as csv_file:
+        reader = csv.DictReader(csv_file)
+        data = list(reader)
+
+    with open(json_path, mode='w', encoding='utf-8') as json_file:
+        json.dump(data, json_file, indent=4)
+
+    print(f"Successfully converted {csv_path} to {json_path}")
+
+convert_csv_to_json("../MongoDB_data/API_SP.POP.TOTL_DS2_en_csv_v2_26346.csv", "../MongoDB_data/API_SP.POP.TOTL_DS2_en_json_v2_26346.json")
+convert_csv_to_json("../MongoDB_data/Metadata_Country_API_SP.POP.TOTL_DS2_en_csv_v2_26346.csv", "../MongoDB_data/Metadata_Country_API_SP.POP.TOTL_DS2_en_json_v2_26346.json")
+convert_csv_to_json("../MongoDB_data/Metadata_Indicator_API_SP.POP.TOTL_DS2_en_csv_v2_26346.csv", "../MongoDB_data/Metadata_Indicator_API_SP.POP.TOTL_DS2_en_json_v2_26346.json")

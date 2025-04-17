@@ -1,0 +1,127 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fdf6e3; /* cream */
+  color: #5c4033; /* brown text */
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Fullscreen flex container */
+body {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally ✅ */
+  background-color: #fdf6e3; /* optional */
+  font-family: "Segoe UI", sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  max-width: 800px;
+  padding: 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tab-buttons button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.tab-buttons button:hover {
+  background-color: #a06f4a;
+}
+
+.tab-buttons .active {
+  background-color: #d2b48c;
+  color: #5c4033;
+}
+
+/* Input + Send button */
+.chat-area input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  width: 70%;
+  border: 2px solid #8b5e3c;
+  border-radius: 6px;
+  background-color: #fffaf0;
+  color: #5c4033;
+}
+
+.chat-area button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.chat-area button:hover {
+  background-color: #a06f4a;
+}
+
+.response {
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background-color: #fff8e1;
+  border-left: 4px solid #8b5e3c;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  font-family: monospace;
+  text-align: left;
+  max-width: 100%;
+}
+
+.response-section {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.response.code-box {
+  background-color: rgba(92, 64, 51, 0.85);
+  color: #fdf6e3;
+  border-left: 4px solid #5c4033;
+  font-family: monospace;
+  padding: 1rem;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  margin-top: 1rem;
+}
+
+.action-buttons {
+  margin-top: 1rem;
+}
+
+.action-buttons button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.action-buttons button:hover {
+  background-color: #a06f4a;
+}

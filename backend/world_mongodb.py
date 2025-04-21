@@ -113,7 +113,7 @@ def mongodb_modify_world(input):
             print("Modification was a success!")
             print(result)
             client.close()
-            return {"query": query, "result": result}
+            return {"query": query, "result": "Data modified!"}
         except Exception as e:
             print(f"Error: {e}")
     client.close()

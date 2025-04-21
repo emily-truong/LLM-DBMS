@@ -3,11 +3,26 @@ import "./App.css";
 
 function App() {
   const [activeTab, setActiveTab] = useState("world");
-  const [inputs, setInputs] = useState({ world: "", pokemon: "", sakila: "" });
+  const [dbType, setDbType] = useState("sql");
+  const [inputs, setInputs] = useState({
+    world: "",
+    pokemon: "",
+    sakila: "",
+  });
+
   const [responses, setResponses] = useState({
-    world: { code: "", output: "" },
-    pokemon: { code: "", output: "" },
-    sakila: { code: "", output: "" },
+    world: {
+      sql: { query: "", output: "", result: [] },
+      nosql: { query: "", output: "", result: [] },
+    },
+    pokemon: {
+      sql: { query: "", output: "", result: [] },
+      nosql: { query: "", output: "", result: [] },
+    },
+    sakila: {
+      sql: { query: "", output: "", result: [] },
+      nosql: { query: "", output: "", result: [] },
+    },
   });
 
   const handleInputChange = (e) => {
@@ -15,26 +30,43 @@ function App() {
   };
 
   const handleSend = async (actionType) => {
-    const mockCode = `-- [${actionType.toUpperCase()}]\nSELECT * FROM ${activeTab}_table WHERE column = 'value';`;
+    const endpoint = `${activeTab}/${actionType}`;
+    const payload = {
+      prompt: inputs[activeTab],
+      dbType: dbType,
+    };
 
-    const res = await fetch("http://127.0.0.1:5001/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        description: inputs[activeTab],
-        category: activeTab,
-        action: actionType, // will be "explore", "query", or "modify"
-      }),
-    });
+    try {
+      const res = await fetch(`http://127.0.0.1:5001/${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    const data = await res.json();
-    setResponses({
-      ...responses,
-      [activeTab]: {
-        code: mockCode,
-        output: data.response,
-      },
-    });
+      const data = await res.json();
+      const query = data.query ?? "-- query not returned --";
+      const output = JSON.stringify(
+        data.result ?? data.response ?? data.error ?? "No response",
+        null,
+        2
+      );
+
+      setResponses((prev) => ({
+        ...prev,
+        [activeTab]: {
+          ...prev[activeTab],
+          [dbType]: {
+            query,
+            output,
+            result: Array.isArray(data.result)
+              ? data.result
+              : data.result || [],
+          },
+        },
+      }));
+    } catch (error) {
+      console.error("Request failed:", error);
+    }
   };
 
   const tabNames = ["world", "pokemon", "sakila"];
@@ -58,11 +90,26 @@ function App() {
 
       <div className="chat-area">
         <h2>{activeTab.toUpperCase()} Chat</h2>
+        <div className="subtab-buttons">
+          <button
+            onClick={() => setDbType("sql")}
+            className={dbType === "sql" ? "active-subtab" : ""}
+          >
+            SQL
+          </button>
+          <button
+            onClick={() => setDbType("nosql")}
+            className={dbType === "nosql" ? "active-subtab" : ""}
+          >
+            NoSQL
+          </button>
+        </div>
+
         <input
           type="text"
           value={inputs[activeTab]}
           onChange={handleInputChange}
-          placeholder={`Ask something about ${activeTab}...`}
+          placeholder={`Ask something about ${activeTab} (${dbType})...`}
         />
 
         <div className="action-buttons">
@@ -75,12 +122,61 @@ function App() {
           </button>
         </div>
 
-        {responses[activeTab].code && (
+        {responses[activeTab][dbType].query && (
           <div className="response-section">
-            <h4>Generated Code:</h4>
-            <p className="response code-box">{responses[activeTab].code}</p>
+            <h4>Generated Query:</h4>
+            <pre className="response code-box">
+              {responses[activeTab][dbType].query}
+            </pre>
+
             <h4>Output:</h4>
-            <p className="response code-box">{responses[activeTab].output}</p>
+            <pre className="response code-box">
+              {responses[activeTab][dbType].output}
+            </pre>
+
+            {typeof responses[activeTab][dbType].result === "string" && (
+              <div className="response-summary">
+                <h4>Summary:</h4>
+                <p>{responses[activeTab][dbType].result}</p>
+              </div>
+            )}
+
+            {Array.isArray(responses[activeTab][dbType].result) &&
+              responses[activeTab][dbType].result.length > 0 && (
+                <div className="table-container">
+                  <h4>Table View:</h4>
+                  <table>
+                    <thead>
+                      <tr>
+                        {typeof responses[activeTab][dbType].result[0] ===
+                          "object" &&
+                        !Array.isArray(
+                          responses[activeTab][dbType].result[0]
+                        ) ? (
+                          Object.keys(
+                            responses[activeTab][dbType].result[0]
+                          ).map((col) => <th key={col}>{col}</th>)
+                        ) : (
+                          <th>Value</th>
+                        )}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {responses[activeTab][dbType].result.map((row, idx) => (
+                        <tr key={idx}>
+                          {typeof row === "object" && !Array.isArray(row) ? (
+                            Object.values(row).map((val, i) => (
+                              <td key={i}>{val === null ? "NULL" : val}</td>
+                            ))
+                          ) : (
+                            <td>{row}</td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
           </div>
         )}
       </div>

@@ -1,4 +1,4 @@
-# LLM-DBMS: Talking to Database Management Systems Using Natural Language
+# LLM-DBMS: Building a Natural Language Query Interface for SQL and NoSQL Databases
 ### Team Members: Evan Hu, Emily Truong, Aditya Venkat
 
 ------
@@ -13,9 +13,9 @@
 
 For our project, we used MongoDB as our NoSQL database and MySQL as our RDBMS. We implemented 3 databases (pokemon_db, world, sakila) into these two database management systems. 
 
-**- MongoDB Setup Instructions:**
+**- MongoDB (Atlas Database) Setup Instructions:**
 
-1. Through the MongoDB website, set up a project and cluster. The default project and cluster works for the scope of this project. In "Clusters", click "Browse Collections". Then click "+ Create Database". Create 3 databases called "pokemon_db", "World", and "sakila". The following are the database names along with their collection names. Please make sure you create/have all collections (case sensitive!) listed under the appropriate database before proceeding to the next step.
+1. Through the MongoDB Atlas website, set up a project and cluster. The default project and cluster works for the scope of this project. In "Clusters", click "Browse Collections". Then click "+ Create Database". Create 3 databases called "pokemon_db", "World", and "sakila". The following are the database names along with their collection names. Please make sure you create/have all collections (case sensitive!) listed under the appropriate database before proceeding to the next step.
     - pokemon_db
         - base_stats
         - pokemon

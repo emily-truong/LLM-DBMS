@@ -1,17 +1,24 @@
-# LLM-DBMS: Building a Natural Language Query Interface for SQL and NoSQL Databases
+# ChatDB: Building a Natural Language Query Interface for SQL and NoSQL Databases
 ### Team Members: Evan Hu, Emily Truong, Aditya Venkat
 
 ------
 
 ### Introduction
 
+In this project, we built a natural language processing (NLP) interface ChatDB that enables users to query both relational (MySQL) and NoSQL (MongoDB) databases using natural language prompts. Through an interactive web interface, user inputs are converted into executable database queries using a large language model (LLM). Specifically, we integrated Google’s Gemini 2.0 Flash through its API to power this conversion. The system supports three primary operations:
 
+1. Explore: Users would be allowed to ask questions in natural language to view schemas and data of databases, such as names of tables/collections, attribute/field names of those tables/collections, and sample data.
+
+2. Query: The interface and program would accept natural language queries from users, convert them into database queries, execute the queries in the DBMS, and return the query results to the users.
+    - For the MySQL databases, it supports common SQL constructs like select, from, where, group by, having, order by, limit, and offset. Queries that involve joining multiple tables are also supported.
+    - For the MongoDB databases, it supports MongoDB functions such as find (with projection), aggregate (with $match, $group, $sort, $limit, $skip, $project). Queries that involve joining two collections (using $lookup) are also supported. 
+3. Modify: Users would be allowed to send insert, delete, and update requests in natural language. For the MongoDB databases, the program converts the requests into MongoDB functions such as insertOne, updateOne, deleteOne, insertMany, etc.
 
 ------
 
 ### Database Management Systems Setup
 
-For our project, we used MongoDB as our NoSQL database and MySQL as our RDBMS. We implemented 3 databases (pokemon_db, world, sakila) into these two database management systems. 
+For our project, we used MongoDB as our NoSQL DBMS and MySQL as our relational DBMS. We implemented 3 databases (pokemon_db, world, sakila) into these two database management systems. 
 
 **- MongoDB (Atlas Database) Setup Instructions:**
 

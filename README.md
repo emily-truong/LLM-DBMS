@@ -1,8 +1,12 @@
 # LLM-DBMS: Talking to Database Management Systems Using Natural Language
+### Team Members: Evan Hu, Emily Truong, Aditya Venkat
+
+------
 
 ### Introduction
 
-------
+
+
 ------
 
 ### Database Management Systems Setup
@@ -35,10 +39,23 @@ For our project, we used MongoDB as our NoSQL database and MySQL as our RDBMS. W
 
 2. Navigate to "SQL" and create an instance using the "Create Instance" button. Select "Choose MySQL". For our project, we chose Enterprise edition with "Development" preset (4 vCPUs) and "Single Zone" availability. Set up an Instance ID and Password. We left the other options as the defaults. Lastly, "Create Instance" to create the MySQL instance (may take a few minutes to create).
 
-3. In the Overview page of the MySQL instance, use "Import" to run the SQL scripts uploaded in step 1. Browse to find the file, select SQL as the file format and "Specified in SQL file" for Destination, and then click "IMPORT". The file will run and the appropriate database will be created. Repeat for the other 2 files/databases.  
+3. In the Overview page of the MySQL instance, use "Import" to run the SQL scripts uploaded in step 1. Browse to find the file, select SQL as the file format and "Specified in SQL file" for Destination, and then click "IMPORT". The file will run and the appropriate database will be created. Repeat for the other 2 files/databases.
 
+4. In the Connections page of the MySQL instance, make sure Public IP connectivity is enabled. Keep in mind the Public IP address as it will be used later to update the backend scripts. In the NETWORKING tab, add the appropriate IP address(es) to the list of Authorized networks. 
+
+------
 
 ### Backend Setup
 
-----
-----
+1. Obtain an API key for Google Gemini API. *From Adi: where to place the API key*
+
+2. Update the connections to the databases in the Python scripts located in the `backend` folder. As a default in the scripts, we have provided the connections to the database management systems we set up, but please update the connections to your own. Please note that the connection to these databases will not work unless you have properly configured the network access settings by adding the necessary IP address(es). 
+    - For the 3 `_mongodb.py` scripts, the connection link has to be updated 3 times for each script. Within each script, the 3 main functions each have a line of code that establishes a connection to the MongoDB cluster. There will be a comment to highlight the need to update the connection link. Thus, there will be a total of **9** changes across the 3 `_mongodb.py` scripts.
+    - For the 3 `_mysql.py` scripts, the connection has to be updated only once for each script. Within each script, there is a helper function called 'mysql_helper_conn' that establishes the connection to the MySQL server to handle queries/requests. Update the 'host', 'user', and 'password'. 'host' is the MySQL instance's public IP address, 'user' can be the default "root" user or any other added user, and 'password' is the associated password for the respective user.
+
+3. filler
+
+------
+
+### Frontend Setup
+

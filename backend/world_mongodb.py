@@ -32,6 +32,7 @@ def mongodb_explore_world(input):
         print(f"pymongo query to execute:\n{query}")
     except Exception as e:
         print(f"Error: {e}")
+    # Edit line below to replace with appropriate connection
     client = MongoClient("mongodb+srv://adityave:DSCI551@dsci551.siuts.mongodb.net/?retryWrites=true&w=majority&appName=DSCI551")
     db = client["World"]
     allowed_globals = {"db": db}
@@ -68,6 +69,7 @@ def mongodb_query_world(input):
         print(f"pymongo query to execute:\n{query}")
     except Exception as e:
         print(f"Error: {e}")
+    # Edit line below to replace with appropriate connection
     client = MongoClient("mongodb+srv://adityave:DSCI551@dsci551.siuts.mongodb.net/?retryWrites=true&w=majority&appName=DSCI551")
     db = client["World"]
     allowed_globals = {"db": db}
@@ -104,6 +106,7 @@ def mongodb_modify_world(input):
         print(f"pymongo query to execute:\n{query}")
     except Exception as e:
         print(f"Error: {e}")
+    # Edit line below to replace with appropriate connection
     client = MongoClient("mongodb+srv://adityave:DSCI551@dsci551.siuts.mongodb.net/?retryWrites=true&w=majority&appName=DSCI551")
     db = client["World"]
     allowed_globals = {"db": db}

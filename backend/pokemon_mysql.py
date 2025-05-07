@@ -14,6 +14,7 @@ def mysql_helper_conn(database_input, query, return_json=False):
     connects to MySQL server and executes query
     """
     mysql_conn = mysql.connector.connect(
+    # Edit below to replace with appropriate connection
         host="34.136.221.112",
         user="root",
         password="toothbrush",

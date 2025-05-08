@@ -54,15 +54,69 @@ For our project, we used MongoDB as our NoSQL DBMS and MySQL as our relational D
 
 ### Backend Setup
 
-1. Obtain an API key for Google Gemini API. *From Adi: where to place the API key*
+1. Prerequisites:
+    - Python 3.8+
+    - ```pip``` (Python package manager)
+    - Your own Google API Key (for Gemini)
+    - MongoDB Atlas Access (replace with your own connection string in the code)
+    - MySQL database (with ```world```, ```pokemon```, and ```sakila``` datasets)
 
 2. Update the connections to the databases in the Python scripts located in the `backend` folder. As a default in the scripts, we have provided the connections to the database management systems we set up, but please update the connections to your own. Please note that the connection to these databases will not work unless you have properly configured the network access settings by adding the necessary IP address(es). 
     - For the 3 `_mongodb.py` scripts, the connection link has to be updated 3 times for each script. Within each script, the 3 main functions each have a line of code that establishes a connection to the MongoDB cluster. There will be a comment to highlight the need to update the connection link. Thus, there will be a total of **9** changes across the 3 `_mongodb.py` scripts.
     - For the 3 `_mysql.py` scripts, the connection has to be updated only once for each script. Within each script, there is a helper function called 'mysql_helper_conn' that establishes the connection to the MySQL server to handle queries/requests. Update the 'host', 'user', and 'password'. 'host' is the MySQL instance's public IP address, 'user' can be the default "root" user or any other added user, and 'password' is the associated password for the respective user.
 
-3. filler
-
+3. Setup Steps:
+    - Navigate to the backend folder:
+      ```
+      cd LLM-DBMS/backend
+      ```
+    - Create a ```.env``` file:
+      ```
+      touch .env
+      ```
+    - Add your API Key:
+      ```
+      GOOGLE_API_KEY=your_google_api_key_here
+      ```
+    - Install dependencies:
+      ```
+      pip install -r requirements.txt
+      ```
+    - Run the Flask server:
+      ```
+      python app.py
+      ```
+    - If successful you should see:
+      ```
+      * Running on http://127.0.0.1:5001/
+      ```
+    - Test backend (optional) - open your browser and go to:
+      ```
+      http://127.0.0.1:5001/
+      ```
+          You should see a message like: "Flask is working!"
 ------
 
 ### Frontend Setup
+
+1. Prerequisites:
+- Node.js (v16 or newer): [https://nodejs.org](https://nodejs.org)
+- npm (comes with Node.js)
+
+2. Navigate to Frontend folder:
+```
+cd LLM-DBMS/frontend-gui
+```
+3. Install frontend dependencies:
+```
+npm install 
+```
+4. Start the development server:
+```
+npm run dev
+```
+5. Open the URL browser to interact with the UI:
+```
+Local: HTTP://localhost:5173/ #will most likely output something like this...
+```
 

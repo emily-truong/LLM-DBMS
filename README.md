@@ -94,14 +94,14 @@ For our project, we used MongoDB as our NoSQL DBMS and MySQL as our relational D
       ```
       http://127.0.0.1:5001/
       ```
-          You should see a message like: "Flask is working!"
+      You should see a message like: "Flask is working!"
 ------
 
 ### Frontend Setup
 
 1. Prerequisites:
-- Node.js (v16 or newer): [https://nodejs.org](https://nodejs.org)
-- npm (comes with Node.js)
+    - Node.js (v16 or newer): [https://nodejs.org](https://nodejs.org)
+    - npm (comes with Node.js)
 
 2. Navigate to Frontend folder:
 ```

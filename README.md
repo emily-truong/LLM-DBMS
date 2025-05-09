@@ -57,9 +57,10 @@ For our project, we used MongoDB as our NoSQL DBMS and MySQL as our relational D
 1. Prerequisites:
     - Python 3.8+
     - ```pip``` (Python package manager)
-    - Your own Google API Key (for Gemini)
-    - MongoDB Atlas Access (replace with your own connection string in the code)
-    - MySQL database (with ```world```, ```pokemon```, and ```sakila``` datasets)
+    - Your own API Key for Google Gemini 2.0 Flash
+    - DBMS are online and running
+        - MongoDB Atlas (with 'World', 'pokemon_db', and 'sakila' databases)
+        - MySQL Server (with 'world', 'pokemon_db', and 'sakila' databases)
 
 2. Update the connections to the databases in the Python scripts located in the `backend` folder. As a default in the scripts, we have provided the connections to the database management systems we set up, but please update the connections to your own. Please note that the connection to these databases will not work unless you have properly configured the network access settings by adding the necessary IP address(es). 
     - For the 3 `_mongodb.py` scripts, the connection link has to be updated 3 times for each script. Within each script, the 3 main functions each have a line of code that establishes a connection to the MongoDB cluster. There will be a comment to highlight the need to update the connection link. Thus, there will be a total of **9** changes across the 3 `_mongodb.py` scripts.
@@ -74,8 +75,9 @@ For our project, we used MongoDB as our NoSQL DBMS and MySQL as our relational D
       ```
       touch .env
       ```
-    - Add your API Key:
+    - Add your Gemini API Key:
       ```
+      nano .env
       GOOGLE_API_KEY=your_google_api_key_here
       ```
     - Install dependencies:
@@ -115,8 +117,7 @@ npm install
 ```
 npm run dev
 ```
-5. Open the URL browser to interact with the UI:
-```
-Local: HTTP://localhost:5173/ #will most likely output something like this...
-```
+Will most likely output something like this... ```Local: HTTP://localhost:5173/```
+
+5. Open the URL in your browser to interact with the UI. 
 
